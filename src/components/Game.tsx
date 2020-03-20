@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Board from "./Board";
 import { ISquare } from "./Square";
+import styled from "styled-components";
 
 type HistoryData = {
   squares: ISquare[];
@@ -72,15 +73,13 @@ function Game() {
   }
 
   return (
-    <div className="game">
-      <div className="game-board">
-        <Board squares={current.squares} onClick={handleClick} />
-      </div>
-      <div className="game-info">
+    <Container>
+      <Board squares={current.squares} onClick={handleClick} />
+      <GameInfo>
         <div>{status}</div>
-        <ol>{moves}</ol>
-      </div>
-    </div>
+        <ol style={{ paddingLeft: "30px" }}>{moves}</ol>
+      </GameInfo>
+    </Container>
   );
 }
 
@@ -103,5 +102,14 @@ function calculateWinner(squares: ISquare[]) {
   }
   return null;
 }
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const GameInfo = styled.div`
+  margin-left: 20px;
+`;
 
 export default Game;

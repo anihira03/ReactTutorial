@@ -1,5 +1,6 @@
 import React from "react";
 import Square, { ISquare } from "./Square";
+import styled from "styled-components";
 
 type BoardProps = {
   squares: ISquare[];
@@ -8,12 +9,16 @@ type BoardProps = {
 
 function Board(props: BoardProps) {
   return (
-    <div className="board-row">
+    <Container>
       {props.squares.map((v, i) => (
         <Square key={i} value={v} onClick={() => props.onClick(i)} />
       ))}
-    </div>
+    </Container>
   );
 }
+
+const Container = styled.div`
+  width: 102px;
+`;
 
 export default Board;
